@@ -8,7 +8,14 @@ module.exports = {
     './nuxt.config.{js,ts}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        tajawalMedium: 'tajawal-medium',
+        tajawalBold: 'tajawal-bold',
+        ajannatLTRegular: 'ajannatLT-regular',
+        ajannatLTBold: 'ajannatLT-bold',
+      },
+    },
   },
   plugins: [],
 }

@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'tajawal-medium';
+    font-style: normal;
+    font-weight: 500;
+    src: url('~/assets/fonts/Tajawal-Medium.ttf');
+  }
+
+  @font-face {
+    font-family: 'tajawal-bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('~/assets/fonts/Tajawal-Bold.ttf');
+  }
+
+  @font-face {
+    font-family: 'ajannatLT-regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('~/assets/fonts/AJannatLT-Regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'ajannatLT-bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('~/assets/fonts/AJannatLT-Bold.ttf');
+  }
+}
