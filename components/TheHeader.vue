@@ -3,21 +3,23 @@
     <nav class="bg-orange-900">
       <TheSection class="d-flex-row justify-between gap-5">
         <div class="d-flex-row gap-6">
-          <h1
-            class="font-tajawalBold text-lg md:text-2xl capitalize text-white"
-          >
-            المستودعات
-          </h1>
+          <NuxtLink :to="{ name: 'index' }">
+            <h1
+              class="font-tajawalBold text-lg capitalize text-white md:text-2xl"
+            >
+              المستودعات
+            </h1>
+          </NuxtLink>
 
           <h2
-            class="font-tajawalMedium text-base md:text-xl capitalize text-white"
+            class="font-tajawalMedium text-base capitalize text-white md:text-xl"
           >
             أذون الإضافة
           </h2>
         </div>
 
         <button
-          class="capitalize w-11 h-11 rounded-full justify-center items-center bg-white/10 text-white d-flex-col"
+          class="d-flex-col h-11 w-11 items-center justify-center rounded-full bg-white/10 capitalize text-white"
         >
           s
         </button>
@@ -25,10 +27,22 @@
     </nav>
 
     <nav v-if="pageTitle" class="bg-white">
-      <TheSection>
-        <h2 class="font-tajawalBold text-base md:text-lg capitalize text-black">
+      <TheSection class="d-flex-row justify-between gap-4">
+        <h2 class="text-black font-tajawalBold text-base capitalize md:text-lg">
           {{ pageTitle }}
         </h2>
+
+        <TheBtn
+          v-if="btnText"
+          id="headerBtn"
+          :link="btnLink"
+          style-type="orange"
+          class="min-w-[120px]"
+          disabled
+          @click.native="btnClickHandler"
+        >
+          {{ btnText }}
+        </TheBtn>
       </TheSection>
     </nav>
   </header>
@@ -40,7 +54,12 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'TheHeader',
   computed: {
-    ...mapGetters('pageTitle', ['pageTitle']),
+    ...mapGetters('pageTitle', [
+      'pageTitle',
+      'btnText',
+      'btnLink',
+      'btnClickHandler',
+    ]),
   },
 }
 </script>
