@@ -11,7 +11,7 @@
           />
         </TheBtn>
 
-        <TheBtn class="min-w-[132px]">
+        <TheBtn :link="{ name: 'vendors-add' }" class="min-w-[132px]">
           <SvgCirclePlus
             class="transition-colors duration-200 group-hover:fill-white"
             :class="['transform']"

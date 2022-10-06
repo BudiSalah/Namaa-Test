@@ -1,5 +1,15 @@
 <template>
+  <NuxtLink
+    v-if="link"
+    :to="link"
+    class="d-flex-row group justify-center gap-1 rounded border border-orange-900 px-2 py-1.5 font-ajannatLTBold transition-colors duration-200"
+    :class="['transform', `custom-${styleType}`]"
+  >
+    <slot />
+  </NuxtLink>
+
   <button
+    v-else
     class="d-flex-row group justify-center gap-1 rounded border border-orange-900 px-2 py-1.5 font-ajannatLTBold transition-colors duration-200"
     :class="['transform', `custom-${styleType}`]"
   >
@@ -16,6 +26,12 @@ export default {
       default: 'white',
       validator(value) {
         return ['white', 'orange'].includes(value)
+      },
+    },
+    link: {
+      type: [String, Object],
+      default() {
+        return ''
       },
     },
   },
