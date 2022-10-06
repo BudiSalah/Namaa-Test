@@ -30,6 +30,19 @@
     font-weight: 700;
     src: url('~/assets/fonts/AJannatLT-Bold.ttf');
   }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #__layout {
+    @apply flex flex-col min-h-screen;
+  }
+
+  main {
+    @apply flex-grow;
+  }
 }
 
 @layer components {
