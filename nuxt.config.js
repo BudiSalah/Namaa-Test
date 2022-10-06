@@ -55,5 +55,10 @@ export default {
         autoprefixer: {},
       },
     },
+    loaders: {
+      vue: {
+        compiler: require('vue-template-babel-compiler'),
+      },
+    },
   },
 }
