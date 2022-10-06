@@ -31,3 +31,17 @@
     src: url('~/assets/fonts/AJannatLT-Bold.ttf');
   }
 }
+
+@layer components {
+  .d-container {
+    @apply container overflow-hidden max-w-7xl;
+  }
+
+  .d-flex-row {
+    @apply flex flex-row items-center;
+  }
+
+  .d-flex-col {
+    @apply flex flex-col;
+  }
+}
