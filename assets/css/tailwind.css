@@ -37,17 +37,34 @@
   }
 
   #__layout {
-    @apply flex flex-col min-h-screen;
+    @apply flex min-h-screen flex-col;
   }
 
   main {
     @apply flex-grow;
   }
+
+  thead {
+    @apply bg-orange-100 text-right font-ajannatLTBold text-orange-900;
+  }
+
+  tbody {
+    @apply font-ajannatLTRegular text-lg text-black-100;
+  }
+
+  tbody tr {
+    @apply border-b border-gray-200 last-of-type:border-none;
+  }
+
+  th,
+  td {
+    @apply px-10 py-4;
+  }
 }
 
 @layer components {
   .d-container {
-    @apply container overflow-hidden max-w-7xl;
+    @apply container max-w-7xl overflow-hidden;
   }
 
   .d-flex-row {
@@ -56,5 +73,9 @@
 
   .d-flex-col {
     @apply flex flex-col;
+  }
+
+  .table-wrapper {
+    @apply w-full overflow-x-auto border border-gray-200;
   }
 }
