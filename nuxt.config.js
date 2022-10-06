@@ -6,7 +6,10 @@ export default {
   head: {
     title: 'namaa-test',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ar',
+    },
+    bodyAttrs: {
+      dir: 'rtl',
     },
     meta: [
       { charset: 'utf-8' },
@@ -25,6 +28,8 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: ['~/components', '~/components/UI'],
+
+  eslint: { fix: true },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
