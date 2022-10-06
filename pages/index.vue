@@ -1,8 +1,10 @@
 <template>
   <main class="bg-gray-100">
+    <ThePopup ref="popup" />
+
     <TheSection class="d-flex-col mt-6 gap-6 rounded-xl bg-white">
       <section class="d-flex-row !items-stretch justify-end gap-3">
-        <TheBtn>
+        <TheBtn @click.native="openPopup">
           <SvgFilter
             class="transition-colors duration-200 group-hover:fill-white"
             :class="['transform']"
@@ -67,5 +69,12 @@ import setPageTitle from '~/mixins/setPageTitle'
 export default {
   name: 'IndexPage',
   mixins: [setPageTitle('أذون الإضافة')],
+  methods: {
+    openPopup() {
+      if ('popup' in this.$refs) {
+        this.$refs.popup.$el.open = 'open'
+      }
+    },
+  },
 }
 </script>
