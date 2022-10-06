@@ -27,7 +27,12 @@ export default {
   plugins: ['~/plugins/vue-fragment'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: ['~/components', '~/components/UI'],
+  components: [
+    '~/components',
+    '~/components/UI',
+    '~/components/units',
+    '~/components/svg',
+  ],
 
   eslint: { fix: true },
 
