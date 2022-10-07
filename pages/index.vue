@@ -39,11 +39,11 @@
           <tr v-for="product of products" :key="product?.id">
             <td>فلان الفلاني</td>
             <td>{{ getVendorName(product?.vendor) }}</td>
-            <td>{{ product?.id }}</td>
+            <td :data-id="product?.id">{{ product?.id }}</td>
             <td>{{ product?.date }}</td>
 
             <td>
-              <button>
+              <button @click="editProduct">
                 <SvgEdit color="fill-black-100" />
               </button>
             </td>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import setPageTitle from '~/mixins/setPageTitle'
 
 export default {
@@ -65,6 +65,7 @@ export default {
     ...mapGetters('addVendor', ['vendorsList', 'products']),
   },
   methods: {
+    ...mapMutations('addVendor', ['set_productEditId']),
     openPopup() {
       if ('popup' in this.$refs) {
         this.$refs.popup.$el.open = 'open'
@@ -72,6 +73,16 @@ export default {
     },
     getVendorName(id) {
       return this.vendorsList?.filter((item) => item.id === id)?.[0]?.name
+    },
+    editProduct({ target }) {
+      const productId = target
+        .closest('tr')
+        ?.querySelector?.('[data-id]')
+        ?.getAttribute?.('data-id')
+
+      this.set_productEditId(productId)
+
+      this.$router.push({ name: 'vendors-add' })
     },
   },
 }

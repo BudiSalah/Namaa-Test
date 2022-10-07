@@ -1,7 +1,7 @@
 
 Todo:
   [] Invoices Page
-    [] Popup Filter
+    [+] Popup Filter
       [] By date and invoice number
     [] Edit icon will retrieve this data using the invoice number
   [] Create Invoice Page

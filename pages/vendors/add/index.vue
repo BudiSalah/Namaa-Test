@@ -1,7 +1,9 @@
 <template>
   <main class="bg-gray-100">
-    <TheSection class="d-flex-col mt-6 gap-6 rounded-xl bg-white">
-      <form ref="formRef" @submit.prevent>
+    <pre>{{ productEditIndex }}</pre>
+
+    <TheSection class="mt-6 rounded-xl bg-white">
+      <form ref="formRef" class="d-flex-col gap-6" @submit.prevent>
         <section class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           <div class="d-flex-col gap-2">
             <label for="serial-number" class="font-tajawalBold">
@@ -117,7 +119,7 @@
               </tr>
 
               <tr
-                v-for="brand in Array(brandFormRows)"
+                v-for="(brand, index) in Array(brandFormRows)"
                 :key="brand"
                 :class="[!addingNewProduct && 'hidden']"
               >
@@ -134,6 +136,7 @@
                     <select
                       name="warehouse"
                       class="h-full w-full bg-transparent outline-none"
+                      :value="productEditObj?.brands?.[index]?.warehouse || ''"
                       @input="
                         (e) =>
                           (e.target.nextElementSibling.value = e.target.value)
@@ -153,6 +156,7 @@
                     <input
                       type="text"
                       class="pointer-events-none absolute inset-0 -z-10"
+                      :value="productEditObj?.brands?.[index]?.warehouse || ''"
                       required
                     />
                   </div>
@@ -165,6 +169,7 @@
                     <select
                       name="brand"
                       class="h-full w-full bg-transparent outline-none"
+                      :value="productEditObj?.brands?.[index]?.brand || ''"
                       @input="
                         (e) =>
                           (e.target.nextElementSibling.value = e.target.value)
@@ -184,6 +189,7 @@
                     <input
                       type="text"
                       class="pointer-events-none absolute inset-0 -z-10"
+                      :value="productEditObj?.brands?.[index]?.brand || ''"
                       required
                     />
                   </div>
@@ -196,6 +202,7 @@
                     <select
                       name="unit"
                       class="h-full w-full bg-transparent outline-none"
+                      :value="productEditObj?.brands?.[index]?.unit || ''"
                       @input="
                         (e) =>
                           (e.target.nextElementSibling.value = e.target.value)
@@ -215,6 +222,7 @@
                     <input
                       type="text"
                       class="pointer-events-none absolute inset-0 -z-10"
+                      :value="productEditObj?.brands?.[index]?.unit || ''"
                       required
                     />
                   </div>
@@ -227,6 +235,7 @@
                     <input
                       name="quantity"
                       type="number"
+                      :value="productEditObj?.brands?.[index]?.quantity || ''"
                       placeholder="ادخل الكمية"
                       min="1"
                       required
@@ -245,7 +254,9 @@
                       placeholder="تاريخ الصلاحية"
                       class="h-full w-full bg-transparent text-right outline-none"
                       :min="todayDate"
-                      :value="todayDate"
+                      :value="
+                        productEditObj?.brands?.[index]?.expDate || todayDate
+                      "
                       required
                     />
                   </div>
@@ -258,6 +269,7 @@
                     <input
                       name="notes"
                       type="text"
+                      :value="productEditObj?.brands?.[index]?.notes || ''"
                       placeholder="يمكنك وضع الملاحظات هنا"
                       class="h-full w-full bg-transparent outline-none"
                     />
@@ -310,6 +322,8 @@ export default {
       'warehouses',
       'items',
       'units',
+      'productEditObj',
+      'productEditIndex',
     ]),
   },
   beforeMount() {
@@ -319,8 +333,15 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
-      this.serialNumberValue = this.serialNumber
-      this.brandDateValue = this.todayDate
+      this.serialNumberValue = this?.productEditObj?.id || this.serialNumber
+      this.brandDateValue = this?.productEditObj?.date || this.todayDate
+      this.vendorValue = this?.productEditObj?.vendor || ''
+      this.vendorNotesValue = this?.productEditObj?.notes || ''
+
+      if (this?.productEditObj?.brands?.length) {
+        this.brandFormRows = this?.productEditObj?.brands?.length
+        this.addingNewProduct = true
+      }
     })
   },
   beforeDestroy() {
@@ -333,6 +354,7 @@ export default {
       'set_btnLink',
       'set_btnClickHandler',
     ]),
+    ...mapMutations('addVendor', ['remove_productEditId', 'reset_productEdit']),
     ...mapActions('addVendor', ['set_serialNumber', 'set_products']),
     addNewProduct() {
       this.addingNewProduct = true
@@ -378,7 +400,13 @@ export default {
         dataObj.brands.push(brand)
       }
 
+      if (this.productEditIndex > -1) {
+        this.remove_productEditId(this.productEditIndex)
+      }
+
       this.set_products(dataObj)
+
+      this.reset_productEdit()
 
       this.$router.push({ name: 'index' })
     },

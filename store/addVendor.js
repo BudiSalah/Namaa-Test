@@ -31,6 +31,8 @@ export const state = () => ({
     { id: 5, name: 'أسم الوحدة 5' },
   ],
   products: [],
+  productEditId: NaN,
+  productEditIndex: NaN,
 })
 
 export const mutations = {
@@ -39,6 +41,16 @@ export const mutations = {
   },
   set_products(state, payload) {
     state.products.push(payload)
+  },
+  set_productEditId(state, payload) {
+    state.productEditId = payload
+  },
+  remove_productEditId(state, payload) {
+    state.products.splice(payload, 1)
+  },
+  reset_productEdit(state) {
+    state.productEditId = NaN
+    state.productEditIndex = NaN
   },
 }
 
@@ -79,5 +91,16 @@ export const getters = {
   },
   products(state) {
     return state.products
+  },
+  productEditId(state) {
+    return state.productEditId
+  },
+  productEditObj(state) {
+    return state.products?.filter?.(
+      (item) => item.id === state.productEditId
+    )?.[0]
+  },
+  productEditIndex(state) {
+    return state.products?.findIndex((item) => item?.id === state.productEditId)
   },
 }
