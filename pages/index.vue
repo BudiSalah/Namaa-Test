@@ -32,24 +32,15 @@
         </template>
 
         <template #tbody>
-          <tr>
-            <td>اسم المورد</td>
-            <td>فلان الفلاني</td>
-            <td>SR 000001</td>
-            <td>01-01-2022</td>
-
-            <td>
-              <button>
-                <SvgEdit color="fill-black-100" />
-              </button>
-            </td>
+          <tr :class="[products?.length && 'hidden']">
+            <td colspan="5" class="text-center">لا يوجد بيانات</td>
           </tr>
 
-          <tr>
-            <td>اسم المورد</td>
+          <tr v-for="product of products" :key="product?.id">
             <td>فلان الفلاني</td>
-            <td>SR 000001</td>
-            <td>01-01-2022</td>
+            <td>{{ getVendorName(product?.vendor) }}</td>
+            <td>{{ product?.id }}</td>
+            <td>{{ product?.date }}</td>
 
             <td>
               <button>
@@ -64,16 +55,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import setPageTitle from '~/mixins/setPageTitle'
 
 export default {
   name: 'IndexPage',
   mixins: [setPageTitle('أذون الإضافة')],
+  computed: {
+    ...mapGetters('addVendor', ['vendorsList', 'products']),
+  },
   methods: {
     openPopup() {
       if ('popup' in this.$refs) {
         this.$refs.popup.$el.open = 'open'
       }
+    },
+    getVendorName(id) {
+      return this.vendorsList?.filter((item) => item.id === id)?.[0]?.name
     },
   },
 }

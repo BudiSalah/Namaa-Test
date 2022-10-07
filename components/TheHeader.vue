@@ -38,7 +38,6 @@
           :link="btnLink"
           style-type="orange"
           class="min-w-[120px]"
-          disabled
           @click.native="btnClickHandler"
         >
           {{ btnText }}
