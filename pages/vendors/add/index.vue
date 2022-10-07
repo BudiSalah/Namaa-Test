@@ -1,7 +1,5 @@
 <template>
   <main class="bg-gray-100">
-    <pre>{{ productEditIndex }}</pre>
-
     <TheSection class="mt-6 rounded-xl bg-white">
       <form ref="formRef" class="d-flex-col gap-6" @submit.prevent>
         <section class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
