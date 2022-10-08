@@ -33,6 +33,7 @@ export const state = () => ({
   products: [],
   productEditId: NaN,
   productEditIndex: NaN,
+  productSearchQuery: '',
 })
 
 export const mutations = {
@@ -51,6 +52,9 @@ export const mutations = {
   reset_productEdit(state) {
     state.productEditId = NaN
     state.productEditIndex = NaN
+  },
+  set_productSearchQuery(state, payload) {
+    state.productSearchQuery = payload
   },
 }
 
@@ -90,6 +94,14 @@ export const getters = {
     return state.units
   },
   products(state) {
+    if (state.productSearchQuery) {
+      const regEx = new RegExp(state.productSearchQuery, 'i')
+
+      return state.products.filter(
+        (item) => regEx.test(item.id) || regEx.test(item.date)
+      )
+    }
+
     return state.products
   },
   productEditId(state) {

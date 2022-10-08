@@ -16,6 +16,7 @@
           class="min-w-[250px] rounded rounded-tl-none rounded-bl-none border border-gray-200 bg-white px-2 py-1 font-tajawalMedium text-black-100"
         >
           <input
+            v-model="searchQuery"
             type="search"
             placeholder="ابحث بالتاريخ او برقم الفاتورة..."
             class="h-full w-full bg-transparent outline-none"
@@ -31,17 +32,24 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'ThePopup',
+  data() {
+    return {
+      searchQuery: '',
+    }
+  },
   methods: {
+    ...mapMutations('addVendor', ['set_productSearchQuery']),
     closePopup() {
       if ('popup' in this.$refs) {
         this.$refs.popup.removeAttribute('open')
       }
     },
     search() {
-      // TODO search data
-
+      this.set_productSearchQuery(this.searchQuery)
       this.closePopup()
     },
   },

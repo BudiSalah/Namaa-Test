@@ -1,17 +1,17 @@
 
 Todo:
-  [] Invoices Page
+  [+] Invoices Page
     [+] Popup Filter
-      [] By date and invoice number
-    [] Edit icon will retrieve this data using the invoice number
-  [] Create Invoice Page
-    [] Automatic serial number (not editable)
-    [] Vendor name is select
-    [] Product table is editable
-      [] Add product btn new line will appear
-      [] Delete btn the line will be deleted
-      [] Warehouse, Item, and Unit field is Select (all are mandatory and read from getters)
-      [] Quantity is positive number which is greater than zero and mandatory
-      [] Date field accepts date only which is greater than today's date and mandatory
-      [] Notes field accepts text and optional
-    [] if success redirect to invoices page
+      [+] By date and invoice number
+    [+] Edit icon will retrieve this data using the invoice number
+  [+] Create Invoice Page
+    [+] Automatic serial number (not editable)
+    [+] Vendor name is select
+    [+] Product table is editable
+      [+] Add product btn new line will appear
+      [+] Delete btn the line will be deleted
+      [+] Warehouse, Item, and Unit field is Select (all are mandatory and read from getters)
+      [+] Quantity is positive number which is greater than zero and mandatory
+      [+] Date field accepts date only which is greater than today's date and mandatory
+      [+] Notes field accepts text and optional
+    [+] if success redirect to invoices page
