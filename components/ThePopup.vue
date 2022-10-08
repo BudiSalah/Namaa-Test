@@ -41,6 +41,9 @@ export default {
       searchQuery: '',
     }
   },
+  beforeDestroy() {
+    this.set_productSearchQuery('')
+  },
   methods: {
     ...mapMutations('addVendor', ['set_productSearchQuery']),
     closePopup() {
